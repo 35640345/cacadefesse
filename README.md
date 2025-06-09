@@ -3,7 +3,7 @@
 [![Live Site](https://img.shields.io/badge/Live-Site-14b8a6?logo=google-chrome&logoColor=white)](https://revenues.digital)
 [![License](https://img.shields.io/badge/License-MIT-1e293b)](#license)
 
-A full-stack, **real-time revenue monitoring platform** with collaborative voice chat, built on an AWS EC2 free-tier instance. The dashboard streams live sales data over WebSockets, renders rich interactive charts, and lets team-mates jump into a peer-to-peer voice room — all inside the browser.
+A real time revenue tracking platform for one of my projects, built on an AWS EC2 free-tier instance. The dashboard streams live sales data over WebSockets, renders rich interactive charts, and lets team-mates jump into a peer-to-peer voice room — all inside the browser.
 
 ---
 
@@ -21,44 +21,8 @@ A full-stack, **real-time revenue monitoring platform** with collaborative voice
 
 ---
 
-## 🏗️ Architecture Overview
-
-```text
-┌──────────────┐      wss://ws.revenues.digital
-│  Socket.IO   │ ───────────────────────────────▶  Client
-│  Server      │         (live metrics)         ┌──────────────┐
-└──────────────┘                                 │ ChartManager │
-                                                 └──────────────┘
-      ▲                                               ▲
-      │ HTTPS                                         │ WebRTC
-      │                                               ▼
-┌──────────────┐  signaling  https://webrtc.revenues.digital  ┌──────────────┐
-│  PeerServer  │ ◀─────────────────────────────────────────── │ PeerService  │
-└──────────────┘                                              └──────────────┘
-
-
-* **Modular JS classes** handle each concern (`AuthManager`, `SocketService`, `PeerService`, `ChartManager`, `DashboardManager`, `VoiceChatManager`).
-* **Nginx** terminates TLS and proxies WebSocket + PeerJS traffic to Node services.
-* **No external DB** — sales data is streamed directly from the business platform.
-
 ---
 
-## 🚀 Quick Start
-
-> **Prerequisites**: Node 18+, npm, and a modern browser with microphone support.
-
-```bash
-git clone https://github.com/your-org/revenues-digital.git
-cd revenues-digital
-npm install
-
-# WebSocket API
-npm run start:ws
-# PeerJS signalling
-npm run start:peer
-# Static front-end (Vite / Live-Server / Nginx)
-npm run dev
-```
 
 Browse to **[https://localhost](https://localhost)** and log in with any **username** and the password **test**.
 
@@ -144,9 +108,6 @@ We welcome code, docs, and design contributions!
 
 ---
 
-## 📝 License
-
-Distributed under the **MIT License** — see [`LICENSE`](LICENSE) for full text.
 
 ```
 ```
