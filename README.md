@@ -141,7 +141,7 @@ Apache will serve the frontend from `/var/www/html/website/`. SSL termination is
 ---
 <br><br>
 
-## 🖼️ Project Screenshots
+# 🖼️ Project Screenshots
 
 
 ### 🔑 Login Screen
