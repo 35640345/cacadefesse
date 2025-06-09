@@ -1,4 +1,4 @@
-```markdown
+
 # 📈 Revenues.Digital – Real-Time Revenue Dashboard
 
 [![Live Site](https://img.shields.io/badge/Live%20Demo-Revenues.Digital-14b8a6?style=for-the-badge&logo=data:image/svg+xml;base64,PHN2ZyB3aWR0aD0nMTAwJyBoZWlnaHQ9JzIwJy8+)](https://revenues.digital)
@@ -144,5 +144,4 @@ npm run lint    # keep the style tidy
 
 *Made with 💚 & **#14b8a6** in EC2’s free tier.*
 
-```
-```
+
