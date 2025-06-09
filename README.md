@@ -102,16 +102,6 @@ Real-time packets (`revenue_update`, `connection_update`, `stats`) patch the dat
 
 ---
 
-## 🤝 Contributing
 
-1. Fork this repo
-2. Create a feature branch: `git checkout -b feat/amazing-thing`
-3. Commit: `git commit -m "feat: amazing thing"`
-4. Push: `git push origin feat/amazing-thing`
-5. Open a Pull Request
-
-We welcome code, docs, and design contributions!
-
----
 
 ```
