@@ -199,11 +199,3 @@ Real-time packets (`revenue_update`, `connection_update`, `stats`) patch the dat
 [![PeerJS](https://img.shields.io/badge/PeerJS-GitHub-blue?logo=github&logoColor=white)](https://github.com/peers/peerjs)
 [![CountUp.js](https://img.shields.io/badge/CountUp.js-GitHub-green?logo=github&logoColor=white)](https://github.com/inorganik/CountUp.js)
 [![Certbot](https://img.shields.io/badge/Certbot-Website-3b873c?logo=letsencrypt&logoColor=white)](https://certbot.eff.org/)
-
-
-
----
-
-
-
-```
