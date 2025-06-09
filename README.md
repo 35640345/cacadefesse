@@ -194,11 +194,13 @@ Real-time packets (`revenue_update`, `connection_update`, `stats`) patch the dat
 
 ## 📚 References
 
-* **Chart.js** — [https://www.chartjs.org/docs/latest/](https://www.chartjs.org/docs/latest/)
-* **Socket.IO** — [https://socket.io/](https://socket.io/)
-* **PeerJS** — [https://github.com/peers/peerjs](https://github.com/peers/peerjs)
-* **CountUp.js** — [https://github.com/inorganik/CountUp.js](https://github.com/inorganik/CountUp.js)
-* **Certbot** — [https://certbot.eff.org/](https://certbot.eff.org/)
+[![Chart.js](https://img.shields.io/badge/Chart.js-Docs-orange?logo=chartdotjs&logoColor=white)](https://www.chartjs.org/docs/latest/)
+[![Socket.IO](https://img.shields.io/badge/Socket.IO-Website-black?logo=socket.io&logoColor=white)](https://socket.io/)
+[![PeerJS](https://img.shields.io/badge/PeerJS-GitHub-blue?logo=github&logoColor=white)](https://github.com/peers/peerjs)
+[![CountUp.js](https://img.shields.io/badge/CountUp.js-GitHub-green?logo=github&logoColor=white)](https://github.com/inorganik/CountUp.js)
+[![Certbot](https://img.shields.io/badge/Certbot-Website-3b873c?logo=letsencrypt&logoColor=white)](https://certbot.eff.org/)
+
+
 
 ---
 
