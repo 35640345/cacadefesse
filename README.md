@@ -164,10 +164,10 @@ To log-in, you can use:
 
 ## 📊 Charts in Action
 
-The dashboard integrates **Chart.js** exactly as documented:
+The dashboard integrates **Chart.js** accordingly to the documentation below:
 
-* [Getting Started](https://www.chartjs.org/docs/latest/getting-started/usage.html)
-* [Dynamic Updates](https://www.chartjs.org/docs/latest/developers/updates.html)
+* [ChartJS basic documentation](https://www.chartjs.org/docs/latest/getting-started/usage.html)
+* [ChartJS chart update documentation](https://www.chartjs.org/docs/latest/developers/updates.html)
 
 Real-time packets (`revenue_update`, `connection_update`, `stats`) patch the datasets and call `chart.update('none')` for buttery-smooth transitions.
 
