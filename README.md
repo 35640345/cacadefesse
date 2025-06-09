@@ -137,12 +137,9 @@ Apache will serve the frontend from `/var/www/html/website/`. SSL termination is
 * [ ] SSL certificates installed for both domains
 * [ ] Apache2 is enabled and running
 
-\
-\
+<br><br>
 ---
-
-\
-\
+<br><br><br>
 
 ## 🖼️ Project Screenshots
 
