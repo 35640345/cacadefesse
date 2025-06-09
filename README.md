@@ -7,7 +7,7 @@ A real time revenue tracking platform for one of my projects, built on an AWS EC
 
 ---
 
-## ✨ Feature Highlights
+## Feature Highlights
 
 | Category | Details |
 | :------- | :------ |
