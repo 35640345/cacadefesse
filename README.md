@@ -34,6 +34,15 @@ Ensure the following ports are open in your hosting provider’s firewall or AWS
 * `2087` (WebSocket server)
 * `2096` (WebRTC signaling server)
 
+```bash
+sudo apt update
+sudo apt install ufw
+sudo ufw allow 80
+sudo ufw allow 443
+sudo ufw allow 2087
+sudo ufw allow 2096
+```
+
 ### 2. Install System Dependencies
 
 SSH into your server and install the required packages:
@@ -123,9 +132,6 @@ sudo systemctl start apache2
 
 Apache will serve the frontend from `/var/www/html/website/`. SSL termination is handled via Nginx if configured, or directly by Certbot via Apache.
 
-### 7. Optional: Nginx Reverse Proxy (Advanced)
-
-If you prefer Nginx as a reverse proxy for `:2087` and `:2096` (WebSocket and WebRTC), create separate proxy configs. Otherwise, direct access to these ports over HTTPS is sufficient.
 
 ### Deployment Checklist
 
