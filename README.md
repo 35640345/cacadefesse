@@ -25,8 +25,8 @@ A **vanilla&nbsp;JavaScript** single-page application that streams sales data ov
 ```
 
 ```
-         ┌─────────────┐    WSS    ┌─────────────┐
-```
+┌─────────────┐    WSS    ┌─────────────┐
+
 
 Browser ─►│ Socket.IO   │◄──────────│  WS Server  │
 │  Client     │           │  (Node)     │
