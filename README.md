@@ -30,11 +30,17 @@ Browse to **[https://localhost](https://localhost)** and log in with any **usern
 
 ## 🖼️ Project Screenshots
 
+
 ### 🔑 Login Screen
 
+To log-in, you can use:
+
+**Username:** Visitor
+**Password:** Test
 ![Login page](https://i.ibb.co/CpSGGyt1/image.png)
 
 > Minimal dark-theme form. Any username + the password **test** grants access for demo purposes.
+
 
 ---
 
