@@ -21,13 +21,6 @@ A real time revenue tracking platform for one of my projects, built on an AWS EC
 
 ---
 
-
-## Deployment
-
-Certainly. Here's a clean, professional, production-ready `Deploy Guide` section written in proper Markdown:
-
----
-
 ## Deploy Guide
 
 This guide outlines how to deploy the real-time revenue dashboard on an Ubuntu 22.04 EC2 instance (or similar VPS) with Apache, Node.js, and SSL.
