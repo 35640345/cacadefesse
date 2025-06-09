@@ -14,8 +14,6 @@ A real time revenue tracking platform for one of my projects, built on an AWS EC
 | **Real-Time Data** | Live sales & visitor metrics delivered via **Socket.IO WebSockets** (`wss://ws.revenues.digital:2087`) with automatic re-connect and exponential back-off. |
 | **Interactive Charts** | Three responsive **Chart.js** visualizations (Revenue 30 days, Visitors 30 days, Visitors 24 h) that update in place without page reload. |
 | **Voice Collaboration** | **PeerJS with WebRTC** voice channel (`https://webrtc.revenues.digital:2096`) with STUN fallback, mute/unmute, speaking indicators, and peer auto-discovery. |
-| **Authentication** | Lightweight username + password (`test`) flow with session logout. |
-| **Animations** | Smooth counters powered by **CountUp.js** for projected revenue. |
 | **Design System** | Dark glass-morphic UI, **Inter** font, teal accents `#14b8a6`, gradient background, fully responsive. |
 | **SSL** | Automated SSL via **Certbot** on Ubuntu 22.04, running on an **AWS t2.micro** (free-tier) instance behind Nginx reverse proxy. |
 
