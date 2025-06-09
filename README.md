@@ -108,7 +108,7 @@ Follow the interactive prompts to install and auto-renew certificates.
 When doing sudo certbot certificates you should get:
 
 
-![Certbot issuing certificates](https://i.ibb.co/PZzDTCKc/image.png)
+![Certbot issuing certificates](https://i.ibb.co/7JCgmScJ/image.png)
 
 
 
