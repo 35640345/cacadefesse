@@ -1,147 +1,166 @@
+````markdown
+# 📈 Revenues Digital — Real-Time Revenue Dashboard
 
-# 📈 Revenues.Digital – Real-Time Revenue Dashboard
+[![Live Site](https://img.shields.io/badge/Live-Site-14b8a6?logo=google-chrome&logoColor=white)](https://revenues.digital)
+[![License](https://img.shields.io/badge/License-MIT-1e293b)](#license)
 
-[![Live Site](https://img.shields.io/badge/Live%20Demo-Revenues.Digital-14b8a6?style=for-the-badge&logo=data:image/svg+xml;base64,PHN2ZyB3aWR0aD0nMTAwJyBoZWlnaHQ9JzIwJy8+)](https://revenues.digital)
-
-A **vanilla&nbsp;JavaScript** single-page application that streams sales data over WebSockets, renders interactive charts in real time, and lets teammates jump into a peer-to-peer voice room—all running on an Amazon EC2 *t2.micro* free-tier instance.
-
----
-
-## ✨ Key Features
-
-| Category | Highlights |
-| -------- | ---------- |
-| **Real-Time Data** | • Bi-directional **WebSocket** transport (Socket.IO)<br>• Infinite auto-reconnect with exponential back-off |
-| **Visual Analytics** | • 30-day **Revenue** & **Visitors** line charts<br>• 24-hour **Visitors / Hour** bar chart<br>• Smooth value transitions with `Chart.update()` |
-| **Collaboration** | • **WebRTC** voice chat (PeerJS)<br>• Google STUN servers for NAT traversal<br>• Mute / speaking indicators |
-| **Authentication** | • Simple password demo (`test`)<br>• Per-session username for personalization |
-| **UX Delight** | • Count-up animations for projections<br>• Dark theme, glass-morphism, responsive |
-| **Security** | • HTTPS / WSS everywhere – Let’s Encrypt via Certbot |
+A full-stack, **real-time revenue monitoring platform** with collaborative voice chat, built from the ground up on an Amazon EC2 free-tier instance. The dashboard streams live sales data over WebSockets, renders rich interactive charts, and lets team-mates jump into a peer-to-peer voice room — all inside the browser.
 
 ---
 
-## 🏗️ Architecture at a Glance
+## ✨ Feature Highlights
 
-```
+| Category | Details |
+| -------- | ------- |
+| **Real-Time Data** | Live sales & visitor metrics delivered via **Socket.IO WebSockets** (`wss://ws.revenues.digital:2087`) with automatic re-connect and exponential back-off. |
+| **Interactive Charts** | Three responsive **Chart.js** visualizations (Revenue 30 days, Visitors 30 days, Visitors 24 hrs) that update in place without page reload. |
+| **Voice Collaboration** | **PeerJS + WebRTC** voice channel (`https://webrtc.revenues.digital:2096`) with STUN fallback, mute/unmute, speaking indicators, and peer auto-discovery. |
+| **Authentication** | Lightweight username + password (`test`) flow with session logout. |
+| **Animations** | Smooth counters powered by **CountUp.js** for projected revenue. |
+| **Design System** | Dark glass-morphic UI, **Inter** font, teal accents `#14b8a6`, gradient background, fully responsive. |
+| **Deployment** | One-click SSL via **Certbot** on Ubuntu 22.04, running on an **AWS t2.micro (free-tier)** instance behind Nginx reverse proxy. |
 
-```
-┌─────────────┐    WSS    ┌─────────────┐
+---
 
+## 🏗️ Architecture Overview
 
-Browser ─►│ Socket.IO   │◄──────────│  WS Server  │
-│  Client     │           │  (Node)     │
-└─────────────┘           └─────────────┘
-▲                          ▲
-│ WebRTC / PeerJS          │ REST (peers list)
-│                          │
-┌─────────────┐    HTTPS   ┌─────────────┐
-│   PeerJS    │◄──────────►│ PeerServer  │
-│   Client    │            │  (Node)     │
-└─────────────┘            └─────────────┘
-
+```text
+┌──────────────┐      wss://ws.revenues.digital
+│  Socket.IO   │ ───────────────────────────────▶  Client
+│  Server      │         (live metrics)         ┌──────────────┐
+└──────────────┘                                 │ ChartManager │
+                                                 └──────────────┘
+      ▲                                               ▲
+      │ HTTPS                                         │ WebRTC
+      │                                               ▼
+┌──────────────┐  signaling  https://webrtc.revenues.digital  ┌──────────────┐
+│  PeerServer  │ ◀─────────────────────────────────────────── │ PeerService  │
+└──────────────┘                                              └──────────────┘
 ````
 
-* **Frontend** – plain JS modules (`/js`)  
-  * `socket.js` → WebSocket glue  
-  * `peer.js`   → voice chat engine  
-  * `charts.js` → Chart.js setup / live updates  
-  * `dashboard.js`, `auth.js`, `app.js`  
-
-* **Servers**  
-  * **WebSocket**: `wss://ws.revenues.digital:2087`  
-  * **PeerServer**: `https://webrtc.revenues.digital:2096`  
+* **Modular JS classes** handle each concern (`AuthManager`, `SocketService`, `PeerService`, `ChartManager`, `DashboardManager`, `VoiceChatManager`).
+* **Nginx** terminates TLS (Let’s Encrypt) and proxies WebSocket and PeerJS traffic to Node services.
+* **No external DB** — sales data is streamed in real-time by the origin business platform.
 
 ---
 
 ## 🚀 Getting Started
 
-```bash
-git clone https://github.com/your-org/revenues.digital.git
-cd revenues.digital
-# Static app – no build step required
-````
+> **Prerequisites:** Node 18 +, npm, and a modern browser with mic support.
 
-1. **DNS / SSL**
+1. **Clone & install**
 
    ```bash
-   sudo certbot certonly --standalone -d revenues.digital \
-                         -d ws.revenues.digital \
-                         -d webrtc.revenues.digital
+   git clone https://github.com/your-org/revenues-digital.git
+   cd revenues-digital
+   npm install
    ```
 
-2. **Run servers (example)**
+2. **Environment**
 
    ```bash
-   # WebSocket
-   PORT=2087 node server/ws-server.js
-
-   # PeerServer
-   peerjs --port 2096 --secure \
-          --sslkey /etc/letsencrypt/live/revenues.digital/privkey.pem \
-          --sslcert /etc/letsencrypt/live/revenues.digital/fullchain.pem
+   cp .env.example .env
+   # tweak ports / domains as needed
    ```
 
-3. **Open** `https://revenues.digital`
-   *Login with any username & password **test***.
+3. **Run all services**
+
+   ```bash
+   # WebSocket API
+   npm run start:ws
+   # PeerJS Signalling
+   npm run start:peer
+   # Static Front-End (Vite / Live-Server / Nginx)
+   npm run dev
+   ```
+
+4. **Browse**
+
+   ```text
+   https://localhost
+   ```
+
+   Log in with any **username** and the password **test**.
 
 ---
 
 ## 🖼️ Screenshots
 
-| Login Page                                    | Certbot Issuance                                | PeerServer CLI                                     |
-| --------------------------------------------- | ----------------------------------------------- | -------------------------------------------------- |
-| ![Login](https://i.ibb.co/CpSGGyt1/image.png) | ![Certbot](https://i.ibb.co/PZzDTCKc/image.png) | ![PeerServer](https://i.ibb.co/0pvpndvS/image.png) |
+| Login Page                                    | Dashboard                                           | Voice Peers                                        |
+| --------------------------------------------- | --------------------------------------------------- | -------------------------------------------------- |
+| ![Login](https://i.ibb.co/CpSGGyt1/image.png) | ![Certbot SSL](https://i.ibb.co/PZzDTCKc/image.png) | ![PeerServer](https://i.ibb.co/0pvpndvS/image.png) |
+
+*(All screenshots taken on the production EC2 host.)*
 
 ---
 
-## ⚙️ Tech Stack
+## 📊 Charts in Action
 
-| Layer               | Tech                                                                                                                                                  |
-| ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Frontend            | Vanilla JS · [Chart.js](https://www.chartjs.org/) · [PeerJS](https://github.com/peers/peerjs) · [CountUp.js](https://github.com/inorganik/CountUp.js) |
-| Real-Time Transport | **Socket.IO** (WebSocket-only)                                                                                                                        |
-| Hosting             | **Amazon EC2** (*t2.micro*, Ubuntu 22.04 LTS)                                                                                                         |
-| TLS                 | Let’s Encrypt / Certbot                                                                                                                               |
+The dashboard integrates **Chart.js 4** exactly as described in the official docs:
 
----
+* [Getting Started](https://www.chartjs.org/docs/latest/getting-started/usage.html)
+* [Dynamic Updates](https://www.chartjs.org/docs/latest/developers/updates.html)
 
-## 🆚 Why EC2 instead of Wix?
-
-|          | **Amazon EC2**                                                                                                               | **Wix.com**                                                                         |
-| :------- | :--------------------------------------------------------------------------------------------------------------------------- | :---------------------------------------------------------------------------------- |
-| **Pros** | • Full customization & root access<br>• Real-time services, custom runtimes, any DB<br>• Separate frontend & backend freedom | • Rapid site building, zero server upkeep<br>• Built-in global CDN & 24 × 7 support |
-| **Cons** | • Requires setup, monitoring, Linux chops<br>• Steeper learning curve                                                        | • No custom backend hosting<br>• Limited personalization beyond templates           |
-
-> **Decision:** The dashboard demands bespoke WebSocket & WebRTC servers and fine-grained control over TLS, ports, and Linux packages—capabilities that EC2 offers while Wix does not.
+Each update packet (`revenue_update`, `connection_update`, `stats`) mutates the underlying dataset, followed by `chart.update('none')` for 60 fps-smooth transitions.
 
 ---
 
-## ✍️ Contributing
+## 🎙️ Voice Chat Details
 
-PRs are welcome! Please open an issue first to discuss major changes.
+* **PeerJS** (`@1.5.2`) provides a high-level wrapper around WebRTC.
+* Signalling server runs on the same EC2 box (`https://webrtc.revenues.digital:2096`).
+* STUN fallback: `stun:stun.l.google.com:19302`, `stun:stun1.l.google.com:19302`.
+* Automatic peer discovery via `GET /peerjs/peers`, then `peer.call(...)`.
+* Robust reconnection logic with capped exponential backoff (`maxReconnectAttempts = 5`).
 
-```bash
-npm test        # run unit tests
-npm run lint    # keep the style tidy
+---
+
+## ☁️ Infrastructure Choice
+
+| Hosting Option         | Pros                                                                                                                               | Cons                                                                          |
+| ---------------------- | ---------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| **AWS EC2 (t2.micro)** | • Full customization / root access<br>• Real-time services, custom runtimes, any DB<br>• Separate **frontend + backend** supported | • Requires setup, monitoring, Linux skills<br>• Higher learning curve         |
+| **Wix.com**            | • Rapid site building, no maintenance<br>• Built-in global CDN & 24/7 support                                                      | • **No custom backend** hosting<br>• Limited personalization beyond templates |
+
+> **Verdict:** The project’s need for WebSocket, PeerJS, custom ports, and SSL automation made **Amazon EC2** the only viable choice despite its steeper learning curve.
+
+---
+
+## 🔒 Security Notes
+
+* TLS everywhere — issued via [Certbot](https://certbot.eff.org/) on Ubuntu with auto-renew.
+* WebSocket traffic upgraded through Nginx with `proxy_read_timeout 900s`.
+* Microphone access gated by an **opt-in** browser prompt.
+
+---
+
+## 📚 Documentation & References
+
+* **Chart.js** — [https://www.chartjs.org/docs/latest/](https://www.chartjs.org/docs/latest/)
+* **Socket.IO 4.7** — [https://socket.io/](https://socket.io/)
+* **PeerJS** — [https://github.com/peers/peerjs](https://github.com/peers/peerjs)
+* **CountUp.js** — [https://github.com/inorganik/CountUp.js](https://github.com/inorganik/CountUp.js)
+* **Let’s Encrypt / Certbot** — [https://certbot.eff.org/](https://certbot.eff.org/)
+
+---
+
+## 🤝 Contributing
+
+1. Fork the repo
+2. Create a feature branch `git checkout -b feat/amazing-thing`
+3. Commit your changes `git commit -m "feat: amazing thing"`
+4. Push to GitHub `git push origin feat/amazing-thing`
+5. Open a Pull Request
+
+All contributions (code, docs, design) are welcome!
+
+---
+
+## 📝 License
+
+Distributed under the **MIT License**. See [`LICENSE`](LICENSE) for full text.
+
 ```
 
----
-
-## 🛡️ License
-
-[MIT](LICENSE)
-
----
-
-## ☕ Acknowledgements
-
-* [Socket.IO](https://socket.io/) – real-time engine
-* [Chart.js](https://www.chartjs.org/) – charts
-* [PeerJS](https://peerjs.com/) – WebRTC wrapper
-* [CountUp.js](https://inorganik.github.io/countUp.js/) – animated counters
-* Google STUN servers – ICE traversal
-* Let’s Encrypt – free SSL
-
-*Made with 💚 & **#14b8a6** in EC2’s free tier.*
-
-
+> **Need help or spot a bug?** Open an issue or start a discussion — we’re growing this project together!
+```
