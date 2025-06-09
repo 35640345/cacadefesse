@@ -35,6 +35,7 @@ A real time revenue tracking platform for one of my projects, built on an AWS EC
 To log-in, you can use:
 
 **Username:** Visitor
+
 **Password:** Test
 ![Login page](https://i.ibb.co/CpSGGyt1/image.png)
 
@@ -113,6 +114,4 @@ We welcome code, docs, and design contributions!
 
 ---
 
-
-```
 ```
