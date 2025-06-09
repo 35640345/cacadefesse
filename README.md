@@ -156,19 +156,15 @@ To log-in, you can use:
 **Username:** Visitor
 
 **Password:** Test
+
 ![Login page](https://i.ibb.co/CpSGGyt1/image.png)
-
-> Minimal dark-theme form. Any username + the password **test** grants access for demo purposes.
-
-
-
 
 
 ---
 
 ## 📊 Charts in Action
 
-The dashboard integrates **Chart.js 4** exactly as documented:
+The dashboard integrates **Chart.js** exactly as documented:
 
 * [Getting Started](https://www.chartjs.org/docs/latest/getting-started/usage.html)
 * [Dynamic Updates](https://www.chartjs.org/docs/latest/developers/updates.html)
@@ -180,10 +176,8 @@ Real-time packets (`revenue_update`, `connection_update`, `stats`) patch the dat
 ## 🎙️ Voice Chat Details
 
 * **PeerJS 1.5.2**: high-level WebRTC wrapper.
-* **Signalling**: hosted at `https://webrtc.revenues.digital:2096`.
-* **STUN**: `stun:stun.l.google.com:19302`, `stun:stun1.l.google.com:19302`.
-* **Auto discovery**: `GET /peerjs/peers` then `peer.call(...)`.
-* **Reconnection**: capped exponential back-off (`maxReconnectAttempts = 5`).
+* **Signalling**: hosted at `https://webrtc.yourdomain.com:2096`.
+* **Auto discovery**: `GET /peerjs/peers`
 
 ---
 
