@@ -183,7 +183,7 @@ Real-time packets (`revenue_update`, `connection_update`, `stats`) patch the dat
 
 ## ☁️ Infrastructure Choice
 
-| Hosting Option         | Pros                                                                                                                                    | Cons ❌                                                                         |
+| Hosting Option         | Pros ✅                                                                                                                                | Cons ❌                                                                         |
 | :--------------------- | :-------------------------------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------ |
 | **AWS EC2 (t2.micro)** | • Full customization / root access<br>• Real-time services, custom runtimes, any database<br>• Separate **frontend + backend** possible | • Requires setup, monitoring, Linux knowledge<br>• Higher learning curve        |
 | **Wix.com**            | • Rapid site building, maintenance-free<br>• Built-in global CDN & 24/7 support                                                         | • **Cannot host custom back-end**<br>• Limited personalization beyond templates |
