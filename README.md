@@ -66,13 +66,11 @@ Update the following files inside `/var/www/html/website/` to use your domain na
 * `socket.js`
 * `peer.js`
 
-Edit the first line of each to match your server address, for example:
+Edit the first line of each to match your server address:
 
 ```js
-// socket.js
 const SOCKET_URL = "wss://yourdomain.com:2087";
 
-// peer.js
 const PEER_HOST = "https://webrtc.yourdomain.com:2096";
 ```
 
