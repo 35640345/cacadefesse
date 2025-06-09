@@ -151,7 +151,7 @@ Apache will serve the frontend from `/var/www/html/website/`. SSL termination is
 
 ### 🔑 Login Screen
 
-To log-in, you can use:
+The default login are the following (you can edit them in auth.js):
 
 **Username:** Visitor
 
