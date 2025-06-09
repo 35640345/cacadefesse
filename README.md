@@ -1,4 +1,4 @@
-````markdown
+markdown
 # 📈 Revenues Digital — Real-Time Revenue Dashboard
 
 [![Live Site](https://img.shields.io/badge/Live-Site-14b8a6?logo=google-chrome&logoColor=white)](https://revenues.digital)
@@ -36,7 +36,7 @@ A full-stack, **real-time revenue monitoring platform** with collaborative voice
 ┌──────────────┐  signaling  https://webrtc.revenues.digital  ┌──────────────┐
 │  PeerServer  │ ◀─────────────────────────────────────────── │ PeerService  │
 └──────────────┘                                              └──────────────┘
-````
+
 
 * **Modular JS classes** handle each concern (`AuthManager`, `SocketService`, `PeerService`, `ChartManager`, `DashboardManager`, `VoiceChatManager`).
 * **Nginx** terminates TLS (Let’s Encrypt) and proxies WebSocket and PeerJS traffic to Node services.
