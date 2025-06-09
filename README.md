@@ -89,7 +89,7 @@ pm2 logs peerjs
 pm2 restart peerjs
 ```
 
-![PeerServer](https://i.ibb.co/0pvpndvS/image.png)
+![PeerServer](https://i.ibb.co/qFLnv2cM/image.png)
 
 
 ### 5. Set Up SSL with Certbot
