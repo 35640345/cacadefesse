@@ -22,6 +22,117 @@ A real time revenue tracking platform for one of my projects, built on an AWS EC
 ---
 
 
+## Deployment
+
+Certainly. Here's a clean, professional, production-ready `Deploy Guide` section written in proper Markdown:
+
+---
+
+## Deploy Guide
+
+This guide outlines how to deploy the real-time revenue dashboard on an Ubuntu 22.04 EC2 instance (or similar VPS) with Apache, Node.js, and SSL.
+
+### 1. Open Required Ports
+
+Ensure the following ports are open in your hosting provider’s firewall or AWS Security Group:
+
+* `80` (HTTP)
+* `443` (HTTPS)
+* `2087` (WebSocket server)
+* `2096` (WebRTC signaling server)
+
+### 2. Install System Dependencies
+
+SSH into your server and install the required packages:
+
+```bash
+sudo apt update
+sudo apt install -y apache2 npm certbot python3-certbot-nginx
+sudo npm install -g pm2
+```
+
+### 3. Set Up Frontend
+
+Move your frontend files to Apache's root directory:
+
+```bash
+sudo mv website /var/www/html/
+```
+
+Update the following files inside `/var/www/html/website/` to use your domain name or public IP:
+
+* `socket.js`
+* `peer.js`
+
+Edit the first line of each to match your server address, for example:
+
+```js
+// socket.js
+const SOCKET_URL = "wss://yourdomain.com:2087";
+
+// peer.js
+const PEER_HOST = "https://webrtc.yourdomain.com:2096";
+```
+
+### 4. Start WebRTC Signaling Server
+
+Navigate to the signaling server directory:
+
+```bash
+cd webrtc-signaling
+npm install
+```
+
+Start the server using `pm2` to keep it running in the background:
+
+```bash
+pm2 start server.js --name peerjs
+```
+
+You can check logs and manage the service with:
+
+```bash
+pm2 logs peerjs
+pm2 restart peerjs
+```
+
+### 5. Set Up SSL with Certbot
+
+Ensure DNS A records for both your main domain and subdomain (`yourdomain.com`, `webrtc.yourdomain.com`) point to your server.
+
+Run Certbot to provision and configure SSL certificates:
+
+```bash
+sudo certbot --nginx -d yourdomain.com -d webrtc.yourdomain.com
+```
+
+Follow the interactive prompts to install and auto-renew certificates.
+
+### 6. Verify Apache Configuration
+
+Make sure Apache2 is running:
+
+```bash
+sudo systemctl enable apache2
+sudo systemctl start apache2
+```
+
+Apache will serve the frontend from `/var/www/html/website/`. SSL termination is handled via Nginx if configured, or directly by Certbot via Apache.
+
+### 7. Optional: Nginx Reverse Proxy (Advanced)
+
+If you prefer Nginx as a reverse proxy for `:2087` and `:2096` (WebSocket and WebRTC), create separate proxy configs. Otherwise, direct access to these ports over HTTPS is sufficient.
+
+### Deployment Checklist
+
+* [ ] Required ports are open (`80`, `443`, `2087`, `2096`)
+* [ ] Frontend deployed to `/var/www/html/website/`
+* [ ] `socket.js` and `peer.js` updated with correct hostnames
+* [ ] Signaling server running with `pm2`
+* [ ] SSL certificates installed for both domains
+* [ ] Apache2 is enabled and running
+
+
 
 
 
