@@ -89,6 +89,9 @@ pm2 logs peerjs
 pm2 restart peerjs
 ```
 
+![PeerServer](https://i.ibb.co/0pvpndvS/image.png)
+
+
 ### 5. Set Up SSL with Certbot
 
 Ensure DNS A records for both your main domain and subdomain (`yourdomain.com`, `webrtc.yourdomain.com`) point to your server.
@@ -96,10 +99,18 @@ Ensure DNS A records for both your main domain and subdomain (`yourdomain.com`, 
 Run Certbot to provision and configure SSL certificates:
 
 ```bash
-sudo certbot --nginx -d yourdomain.com -d webrtc.yourdomain.com
+sudo certbot --nginx -d www.yourdomain.com -d yourdomain.com -d webrtc.yourdomain.com
 ```
 
 Follow the interactive prompts to install and auto-renew certificates.
+
+
+When doing sudo certbot certificates you should get:
+
+
+![Certbot issuing certificates](https://i.ibb.co/PZzDTCKc/image.png)
+
+
 
 ### 6. Verify Apache Configuration
 
@@ -146,21 +157,8 @@ To log-in, you can use:
 > Minimal dark-theme form. Any username + the password **test** grants access for demo purposes.
 
 
----
 
-### 🔒 SSL Certificates (Certbot)
 
-![Certbot issuing certificates](https://i.ibb.co/PZzDTCKc/image.png)
-
-> Let’s Encrypt certificates provisioned automatically with **Certbot** on Ubuntu 22.04.
-
----
-
-### 🗣️ PeerJS Server Console
-
-![PeerServer](https://i.ibb.co/0pvpndvS/image.png)
-
-> Self-hosted **PeerJS** signalling server running on the same EC2 instance (`https://webrtc.revenues.digital:2096`).
 
 ---
 
