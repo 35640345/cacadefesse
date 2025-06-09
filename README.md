@@ -2,7 +2,6 @@
 
 [![Live Site](https://img.shields.io/badge/Live-Site-14b8a6?logo=google-chrome&logoColor=white)](https://revenues.digital)
 
-
 A real time revenue tracking platform for one of my projects, built on an AWS EC2 free-tier instance. The dashboard streams live sales data over WebSockets, renders rich interactive charts, and lets team-mates jump into a peer-to-peer voice room — all inside the browser.
 
 ---
